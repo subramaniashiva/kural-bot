@@ -94,10 +94,13 @@ app.post('/', (req, res) => {
 app.post(APP_CONSTANTS.apiai.postUrlPath, (req, res) => {
 
   // Proces only if the user is intenting a kural
+  console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent)
   if (req.body.result.action === APP_CONSTANTS.apiai.kuralIntent) {
     // Get and process the kural number
     let kuralNo = req.body.result.parameters['number'];
     kuralNo = parseInt(kuralNo);
+
+    console.log('kural number is ', kuralNo);
 
     // If there is no kural number or kural number is not valid
     // send a message to the user
@@ -120,8 +123,10 @@ app.post(APP_CONSTANTS.apiai.postUrlPath, (req, res) => {
     // Else request the kural from back end API
     else {
       let restUrl = APP_CONSTANTS.kural.url + kuralNo +'.json';
+      console.log('sendng request ', restUrl);
 
       request.get(restUrl, (err, response, body) => {
+        console.log('response from kural ', err, response.statusCode, body);
         if (!err && response.statusCode == 200) {
           let json = JSON.parse(body);
           let msg = json.content;
