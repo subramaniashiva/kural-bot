@@ -65,7 +65,7 @@ function sendMessage(event) {
 
 }
 
-function getKuralFromApi(url, res) {
+function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
 
   request.get(url, (err, response, body) => {
     console.log('response from kural ', err, response.statusCode, body);
@@ -81,7 +81,7 @@ function getKuralFromApi(url, res) {
       return res.json({
         speech: msg,
         displayText: msg,
-        source: APP_CONSTANTS.apiai.kuralIntent
+        source: intent
       });
     } else {
       return res.status(400).json({
@@ -157,17 +157,11 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
       getKuralFromApi(restUrl, res);
       
     }
+  } else if (req.body.result.action === APP_CONSTANTS.apiai.loveIntent) {
+    let kuralNo = Math.floor(Math.random() * (APP_CONSTANTS.kural.inbamEnd - APP_CONSTANTS.kural.inbamStart + 1)) + APP_CONSTANTS.kural.inbamStart;  
+    let restUrl = APP_CONSTANTS.kural.url + kuralNo +'.json';
+    console.log('sendng request ', restUrl);
+
+    getKuralFromApi(restUrl, res, APP_CONSTANTS.apiai.loveIntent);
   }
-});
-
-// Fulfillments from API.ai
-// This post method will be called by API.ai when it recognises that the user is requesting love kural
-app.post(APP_CONSTANTS.apiai.postLovePath, (req, res) => {
-  
-  let kuralNo = Math.floor(Math.random() * (APP_CONSTANTS.kural.inbamEnd - APP_CONSTANTS.kural.inbamStart + 1)) + APP_CONSTANTS.kural.inbamStart;  
-  let restUrl = APP_CONSTANTS.kural.url + kuralNo +'.json';
-  console.log('sendng request ', restUrl);
-
-  getKuralFromApi(restUrl, res);
-
 });
