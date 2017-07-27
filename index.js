@@ -65,6 +65,35 @@ function sendMessage(event) {
 
 }
 
+function getKuralFromApi(url, res) {
+
+  request.get(url, (err, response, body) => {
+    console.log('response from kural ', err, response.statusCode, body);
+    if (!err && response.statusCode == 200) {
+      let json = JSON.parse(body);
+      let msg = json.content;
+      // Replace the break tag from the kural
+      msg = msg.replace('<br />', '\n');
+      // Add a line between kural and explanation
+      msg = msg + '\n------------------\n';
+      // Add the kural explanation
+      msg = msg + json.explanation;
+      return res.json({
+        speech: msg,
+        displayText: msg,
+        source: APP_CONSTANTS.apiai.kuralIntent
+      });
+    } else {
+      return res.status(400).json({
+        status: {
+          code: 400,
+          errorType: 'I failed to look up the kural.'
+        }
+      });
+    }
+  });
+}
+
 // Get method used for facebook to verify this app
 app.get('/', (req, res) => {
   if (req.query['hub.mode'] && req.query['hub.verify_token'] === process.env.FB_VERIFY_TOKEN) {
@@ -91,7 +120,7 @@ app.post('/', (req, res) => {
 
 // Fulfillments from API.ai
 // This post method will be called by API.ai when it recognises that the user is requesting a kural
-app.post(APP_CONSTANTS.apiai.postUrlPath, (req, res) => {
+app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
 
   // Proces only if the user is intenting a kural
   console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent)
@@ -125,31 +154,20 @@ app.post(APP_CONSTANTS.apiai.postUrlPath, (req, res) => {
       let restUrl = APP_CONSTANTS.kural.url + kuralNo +'.json';
       console.log('sendng request ', restUrl);
 
-      request.get(restUrl, (err, response, body) => {
-        console.log('response from kural ', err, response.statusCode, body);
-        if (!err && response.statusCode == 200) {
-          let json = JSON.parse(body);
-          let msg = json.content;
-          // Replace the break tag from the kural
-          msg = msg.replace('<br />', '\n');
-          // Add a line between kural and explanation
-          msg = msg + '\n------------------\n';
-          // Add the kural explanation
-          msg = msg + json.explanation;
-          return res.json({
-            speech: msg,
-            displayText: msg,
-            source: APP_CONSTANTS.apiai.kuralIntent
-          });
-        } else {
-          return res.status(400).json({
-            status: {
-              code: 400,
-              errorType: 'I failed to look up the kural.'
-            }
-          });
-        }
-      });
+      getKuralFromApi(restUrl, res);
+      
     }
   }
+});
+
+// Fulfillments from API.ai
+// This post method will be called by API.ai when it recognises that the user is requesting love kural
+app.post(APP_CONSTANTS.apiai.postLovePath, (req, res) => {
+  
+  let kuralNo = Math.floor(Math.random() * (APP_CONSTANTS.kural.inbamEnd - APP_CONSTANTS.kural.inbamStart + 1)) + APP_CONSTANTS.kural.inbamStart;  
+  let restUrl = APP_CONSTANTS.kural.url + kuralNo +'.json';
+  console.log('sendng request ', restUrl);
+
+  getKuralFromApi(restUrl, res);
+
 });
