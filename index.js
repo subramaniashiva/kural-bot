@@ -68,8 +68,8 @@ function sendMessage(event) {
 function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
 
   request.get(url, (err, response, body) => {
-    console.log('response from kural ', err, response.statusCode, body);
-    if (!err && response.statusCode == 200) {
+    if (!err && response && response.statusCode == 200) {
+      console.log('response from kural ', err, response.statusCode, body);
       let json = JSON.parse(body);
       let msg = json.content;
       // Replace the break tag from the kural
@@ -123,8 +123,10 @@ app.post('/', (req, res) => {
 app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
 
   // Proces only if the user is intenting a kural
-  console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent)
-  if (req.body.result.action === APP_CONSTANTS.apiai.kuralIntent) {
+  //console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent);
+  const apiAiAction = req && req.body && req.body.result && req.body.result.action;
+
+  if (apiAiAction === APP_CONSTANTS.apiai.kuralIntent) {
     // Get and process the kural number
     let kuralNo = req.body.result.parameters['number'];
     kuralNo = parseInt(kuralNo);
@@ -157,11 +159,17 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
       getKuralFromApi(restUrl, res);
       
     }
-  } else if (req.body.result.action === APP_CONSTANTS.apiai.loveIntent) {
-    let kuralNo = Math.floor(Math.random() * (APP_CONSTANTS.kural.inbamEnd - APP_CONSTANTS.kural.inbamStart + 1)) + APP_CONSTANTS.kural.inbamStart;  
+  } else if (apiAiAction === APP_CONSTANTS.apiai.loveIntent ||
+    apiAiAction === APP_CONSTANTS.apiai.aramIntent ||
+    apiAiAction === APP_CONSTANTS.apiai.porulIntent ||
+    apiAiAction === APP_CONSTANTS.apiai.randomIntent
+    ) {
+    let kuralNo = Math.floor(Math.random() * (APP_CONSTANTS.kural[apiAiAction + 'End'] - APP_CONSTANTS.kural[apiAiAction + 'Start'] + 1)) + APP_CONSTANTS.kural[apiAiAction + 'Start'];  
     let restUrl = APP_CONSTANTS.kural.url + kuralNo +'.json';
     console.log('sendng request ', restUrl);
 
-    getKuralFromApi(restUrl, res, APP_CONSTANTS.apiai.loveIntent);
+    getKuralFromApi(restUrl, res, apiAiAction);
+  } else {
+    res.status(200).end();
   }
 });
