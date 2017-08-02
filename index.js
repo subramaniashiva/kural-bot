@@ -101,6 +101,29 @@ function sendMessage(event) {
 
 }
 
+function sendBookToUser(event, link) {
+    // Send it back to FB messenger
+  request({
+    url: APP_CONSTANTS.messenger.url,
+    qs: {
+      access_token: process.env.FB_ACCESS_TOKEN
+    },
+    method: 'POST',
+    json: {
+      recipient: {
+        id: event.sender.id
+      },
+      message: link
+    }
+  }, function (error, response) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
+}
+
 function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
 
   request.get(url, (err, response, body) => {
@@ -155,6 +178,8 @@ app.post('/', (req, res) => {
       entry.messaging.forEach((event) => {
         if(event.message && event.message.text) {
           sendMessage(event);
+        } else if(event.postback) {
+          sendBookToUser(event, 'Yaamam');
         }
       });
     });
