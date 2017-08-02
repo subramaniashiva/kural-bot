@@ -113,7 +113,9 @@ function sendBookToUser(event, link) {
       recipient: {
         id: event.sender.id
       },
-      message: link
+      message: {
+        text: link
+      }
     }
   }, function (error, response) {
     if (error) {
