@@ -32,6 +32,44 @@ function sendMessage(event) {
   apiai.on('response', (response) => {
     // Get the response
     let aiText = response.result.fulfillment.speech;
+    let messageObj;
+
+    if(aiText === 'sendBookOptions') {
+      messageObj = {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'list',
+            top_element_style: 'compact',
+            elements: [
+              {
+                title: 'Novel',
+                buttons: [
+                  {
+                    title: 'Novel',
+                    type: 'postback',
+                    payload: 'Novel'
+                  }
+                ]
+              }, {
+                title: 'Story',
+                buttons: [
+                  {
+                    title: 'Story',
+                    type: 'postback',
+                    payload: 'Story'
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    } else {
+      messageObj = {
+        text: aiText
+      };
+    }
 
     // Send it back to FB messenger
     request({
@@ -44,9 +82,7 @@ function sendMessage(event) {
         recipient: {
           id: sender
         },
-        message: {
-          text: aiText
-        }
+        message: messageObj
       }
     }, function (error, response) {
       if (error) {
@@ -91,6 +127,14 @@ function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
         }
       });
     }
+  });
+}
+
+function sendBookOptions(res, intent) {
+  return res.json({
+    speech: 'sendBookOptions',
+    displayText: 'sendBookOptions',
+    source: intent
   });
 }
 
@@ -159,7 +203,8 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
       getKuralFromApi(restUrl, res);
       
     }
-  } else if (apiAiAction === APP_CONSTANTS.apiai.loveIntent ||
+  }
+  else if (apiAiAction === APP_CONSTANTS.apiai.loveIntent ||
     apiAiAction === APP_CONSTANTS.apiai.aramIntent ||
     apiAiAction === APP_CONSTANTS.apiai.porulIntent ||
     apiAiAction === APP_CONSTANTS.apiai.randomIntent
@@ -169,7 +214,11 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
     console.log('sendng request ', restUrl);
 
     getKuralFromApi(restUrl, res, apiAiAction);
-  } else {
+  } 
+  else if (apiAiAction === APP_CONSTANTS.apiai.bookOptions) {
+    sendBookOptions(res, apiAiAction);
+  }
+  else {
     res.status(200).end();
   }
 });
