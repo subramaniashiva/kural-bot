@@ -23,7 +23,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 function prepareBookCategoriesObject() {
   return BOOKS.categories.map((item) => {
     let obj = {};
-    obj['content_type'] = 'text',
+    obj['type'] = 'postback',
     obj['title'] = item.label;
     obj['payload'] = item.name;
     return obj;
@@ -52,8 +52,19 @@ function sendMessage(event) {
 
     if(aiText === 'sendBookOptions') {
       messageObj = {
-        text: 'APP_MESSAGES.books.select_button',
-        quick_replies: BOOK_CATEGORIES_OBJ
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'generic',
+            elements: [{
+              title: APP_MESSAGES.books.select_button,
+              buttons: BOOK_CATEGORIES_OBJ.slice(0, 3)
+            }, {
+              title: APP_MESSAGES.books.select_button,
+              buttons: BOOK_CATEGORIES_OBJ.slice(3)
+            }]
+          }
+        }
       }
       // messageObj = {
       //   attachment: {
