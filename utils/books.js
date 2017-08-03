@@ -8,9 +8,6 @@ module.exports = {
   }, {
     name: 'story',
     label: 'Short Stories'
-  }, {
-    name: 'katurai',
-    label: 'Non Fiction'
   }],
   books: {
     novel: [{
