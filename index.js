@@ -10,6 +10,8 @@ const app = express();
 const APP_CONSTANTS = require('./utils/constants');
 const APP_MESSAGES = require('./utils/messages');
 
+const BOOKS = require('./utils/books');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -17,6 +19,18 @@ app.use(bodyParser.urlencoded({ extended: true}));
 const server = app.listen(process.env.PORT || 5000, () => {
   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
+
+function prepareBookCategoriesObject() {
+  return BOOKS.categories.map((item) => {
+    let obj = {};
+    obj['type'] = 'postback',
+    obj['title'] = item.label;
+    obj['payload'] = item.name;
+    return obj;
+  });
+}
+
+const BOOK_CATEGORIES_OBJ = prepareBookCategoriesObject();
 
 // Function called when getting an input from the user
 function sendMessage(event) {
@@ -39,29 +53,9 @@ function sendMessage(event) {
         attachment: {
           type: 'template',
           payload: {
-            template_type: 'list',
-            top_element_style: 'compact',
-            elements: [
-              {
-                title: 'Novel',
-                buttons: [
-                  {
-                    title: 'Novel',
-                    type: 'postback',
-                    payload: 'Novel'
-                  }
-                ]
-              }, {
-                title: 'Story',
-                buttons: [
-                  {
-                    title: 'Story',
-                    type: 'postback',
-                    payload: 'Story'
-                  }
-                ]
-              }
-            ]
+            template_type: 'button',
+            text: APP_MESSAGES.books.select_button,
+            buttons: BOOK_CATEGORIES_OBJ
           }
         }
       }
@@ -101,7 +95,7 @@ function sendMessage(event) {
 
 }
 
-function sendBookToUser(event, link) {
+function sendBookToUser(event) {
     // Send it back to FB messenger
   request({
     url: APP_CONSTANTS.messenger.url,
@@ -114,7 +108,7 @@ function sendBookToUser(event, link) {
         id: event.sender.id
       },
       message: {
-        text: link
+        text: event.payload
       }
     }
   }, function (error, response) {
@@ -181,7 +175,7 @@ app.post('/', (req, res) => {
         if(event.message && event.message.text) {
           sendMessage(event);
         } else if(event.postback) {
-          sendBookToUser(event, 'Yaamam');
+          sendBookToUser(event);
         }
       });
     });
