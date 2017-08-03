@@ -57,10 +57,10 @@ function sendMessage(event) {
           payload: {
             template_type: 'generic',
             elements: [{
-              title: APP_MESSAGES.books.select_button,
+              title: APP_MESSAGES.books.select_button_page_1,
               buttons: BOOK_CATEGORIES_OBJ.slice(0, 3)
             }, {
-              title: APP_MESSAGES.books.select_button,
+              title: APP_MESSAGES.books.select_button_page_2,
               buttons: BOOK_CATEGORIES_OBJ.slice(3)
             }]
           }
@@ -189,9 +189,10 @@ app.post('/', (req, res) => {
   if(req.body.object === 'page') {
     req.body.entry.forEach((entry) => {
       entry.messaging.forEach((event) => {
-        if(event.message && event.message.text) {
+        if(event.message && event.message.text && !event.message.is_echo) {
           sendMessage(event);
         } else if(event.postback) {
+          console.log('event is ', event);
           sendBookToUser(event);
         }
       });
