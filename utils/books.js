@@ -11,9 +11,6 @@ module.exports = {
   }, {
     name: 'katurai',
     label: 'Non Fiction'
-  }, {
-    name: 'children',
-    label: 'Children Literature'
   }],
   books: {
     novel: [{
