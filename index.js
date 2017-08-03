@@ -32,6 +32,8 @@ function prepareBookCategoriesObject() {
 
 const BOOK_CATEGORIES_OBJ = prepareBookCategoriesObject();
 
+console.log('categories is ', BOOK_CATEGORIES_OBJ);
+
 // Function called when getting an input from the user
 function sendMessage(event) {
   let sender = event.sender.id;
@@ -108,7 +110,7 @@ function sendBookToUser(event) {
         id: event.sender.id
       },
       message: {
-        text: event.payload
+        text: event.postback.payload
       }
     }
   }, function (error, response) {
