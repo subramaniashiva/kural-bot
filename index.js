@@ -130,7 +130,28 @@ function sendBookToUser(event) {
           id: event.sender.id
         },
         message: {
-          text: book.label + '\n' + book.author + '\n' + book.url[0]
+          attachment: {
+            type: 'template',
+            payload: {
+              template_type: 'generic',
+              elements: [{
+                title: book.label,
+                subtitle: book.description,
+                default_action: {
+                  type: 'web_url',
+                  url: book.url[0]
+                },
+                buttons: [
+                  {
+                    type: 'web_url',
+                    url: book.url[0],
+                    title: 'View and Buy'
+                  }
+                ]
+              }]
+            }
+          }
+          //text: book.label + '\n' + book.author + '\n' + book.url[0]
         }
       }
     }, function (error, response) {
