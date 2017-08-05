@@ -130,7 +130,7 @@ function sendBookToUser(event) {
           id: event.sender.id
         },
         message: {
-          text: book.label + '\n' + book.author
+          text: book.label + '\n' + book.author + '\n' + book.url[0]
         }
       }
     }, function (error, response) {
