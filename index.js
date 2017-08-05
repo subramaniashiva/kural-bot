@@ -9,6 +9,7 @@ const app = express();
 // Import constants for the app
 const APP_CONSTANTS = require('./utils/constants');
 const APP_MESSAGES = require('./utils/messages');
+const helper = require('./utils/helper');
 
 const BOOKS = require('./utils/books');
 
@@ -113,28 +114,34 @@ function sendMessage(event) {
 }
 
 function sendBookToUser(event) {
-    // Send it back to FB messenger
-  request({
-    url: APP_CONSTANTS.messenger.url,
-    qs: {
-      access_token: process.env.FB_ACCESS_TOKEN
-    },
-    method: 'POST',
-    json: {
-      recipient: {
-        id: event.sender.id
+  // Send it back to FB messenger
+  let categoryChosen = BOOKS.books[event.postback.payload];
+
+  if(categoryChosen) {
+    let book = helper.getRandomElementFromArray(categoryChosen);
+    request({
+      url: APP_CONSTANTS.messenger.url,
+      qs: {
+        access_token: process.env.FB_ACCESS_TOKEN
       },
-      message: {
-        text: event.postback.payload
+      method: 'POST',
+      json: {
+        recipient: {
+          id: event.sender.id
+        },
+        message: {
+          text: book.label + '\n' + book.author
+        }
       }
-    }
-  }, function (error, response) {
-    if (error) {
-      console.log('Error sending message: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    }
-  });
+    }, function (error, response) {
+      if (error) {
+        console.log('Error sending message: ', error);
+      } else if (response.body.error) {
+        console.log('Error: ', response.body.error);
+      }
+    });
+  }
+
 }
 
 function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
