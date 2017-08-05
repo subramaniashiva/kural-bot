@@ -9,9 +9,9 @@ module.exports = {
     let min = 0,
       max = arr.length;
 
-    return arr[getRandomNumber(0, arr.length-1)];
+    return arr[this.getRandomNumber(0, arr.length-1)];
   },
-  getRandomNumber: function(start, end) {
+  getRandomNumber: function getRandomNumber(start, end) {
     return Math.floor(Math.random() * ( end-start+1 ) + start);
   }
 }
