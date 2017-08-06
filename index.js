@@ -136,6 +136,7 @@ function sendBookToUser(event) {
               template_type: 'generic',
               elements: [{
                 title: book.label,
+                image_url: book.image_url,
                 subtitle: book.description,
                 default_action: {
                   type: 'web_url',
