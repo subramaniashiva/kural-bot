@@ -162,6 +162,31 @@ function sendBookToUser(event) {
         console.log('Error: ', response.body.error);
       }
     });
+
+    request({
+      url: APP_CONSTANTS.messenger.url,
+      qs: {
+        access_token: process.env.FB_ACCESS_TOKEN
+      },
+      method: 'POST',
+      json: {
+        recipient: {
+          id: event.sender.id
+        },
+        message: {
+          text: book.description
+        }
+      }
+    }, function (error, response) {
+      if (error) {
+        console.log('Error sending message: ', error);
+      } else if (response.body.error) {
+        console.log('Error: ', response.body.error);
+      }
+    });
+
+
+
   }
 
 }
