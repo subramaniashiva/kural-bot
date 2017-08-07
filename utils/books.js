@@ -1,19 +1,19 @@
 module.exports = {
 	categories: [{
     name: 'novel',
-    label: 'Novel'
+    label: 'நாவல்'
   }, {
     name: 'kavidhai',
-    label: 'Kavidhai'
+    label: 'கவிதை'
   }, {
     name: 'story',
-    label: 'Short Stories'
+    label: 'சிறுகதை தொகுப்பு'
   }, {
     name: 'katurai',
-    label: 'Non Fiction'
+    label: 'கட்டுரைத் தொகுப்பு'
   }, {
     name: 'children',
-    label: 'Children Literature'
+    label: 'சிறுவர் இலக்கியம்'
   }],
   books: {
     novel: [{
@@ -21,42 +21,42 @@ module.exports = {
       author: "சி சு செல்லப்பா",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/61-ffAWMe%2BL._SX299_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Vaadivasal-Modern-Tamil-Classic-Novellete/dp/8187477520/",
+      url: "http://amzn.to/2wBUcBF",
       description: "ஜெல்லிக்கட்டு ஒரு வீர நாடகம். அது விளையாட்டும்கூட. புய வலு, தொழில் நுட்பம், சாமர்த்தியம் எல்லாம் அதுக்கு வேண்டும். தான் போராடுவது மனித னுடன் அல்ல, ரோஷமூட்டப்பட்ட ஒரு மிருகத்துடன் என்பதை ஞாபகத்தில் கொண்டு வாடிவாசலில் நிற்கவேண்டும் மாடு அணைபவன். அந்த இடத்தில் மரணம் தான் மனிதனுக்குக் காத்துக் கொண்டிருக்கும். காளைக்குத் தன்னோடு மனுஷன் விளை யாடுகிறான் என்று தெரியாது. அதற்கு விளையாட்டிலும் அக்கறை இல்லை. அதை மையமாக வைத்துப் புனையப்பட்ட இந்தக் கதையில் ஜெல்லிக் கட்டு பற்றிய வர்ணனை தத்ரூப மாகச் சித்தரிக்கப்பட்டிருக்கிறது. நுட்பமாகவும்கூட."
     }, {
       label: "அம்மா வந்தாள்",
       author: "தி ஜானகிராமன்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/51PDF5PYS6L._SX322_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Vanthal-Modern-Tamil-Classic-Novel/dp/9380240880/",
+      url: "http://amzn.to/2vfAbRF",
       description: "‘அம்மா வந்தாளை’ மீறலின் புனிதப் பிரதியாகக் கொண்டாடலாம். சமூகம் நிறுவிக் காபந்து செய்து வரும் ஒழுக்க மரபைக் கேள்விக்குட்படுத்துகிறது நாவலின் கதை மையம். மனித உறவுகள் நியதி களுக்குக் கட்டுப்பட்டவை அல்ல. அவை உணர்ச்சிகளுக்கு வசப்படுபவை. இந்த இரண்டு கருத்தோட்டங்களின் ஈவாகவே மனித வாழ்க்கை இருக்கிறது; இருக்கும் என்பதை வலியுறுத்துகிறது கதை."
     }, {
       label: "ஜே ஜே சில குறிப்புகள்",
       author: "சுந்தர ராமசாமி",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/41CfUVwRdOL._SX315_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Kuripugal-Modern-Tamil-Classic-Novel/dp/8190080180/",
+      url: "http://amzn.to/2vJ4dAy",
       description: "என்னைப் போலவே நான் சந்தித்தவர்களும் ‘இப்போது என்னைப் பிடித்துக்கொண்டிருக்கும் துக்கத்தை மட்டும் ஒரு புறச்சக்தி நீக்கித் தந்துவிட்டால் இனி வரவிருக்கும் துக்கங்களை நானே சமாளித்துத் தீர்த்துக் கொள்வேன்’ என்று பிரார்த்தனையில் ஏங்குவதை உணர்ந்திருக்கிறேன். தண்ணீரின் ருசிகள் வேறானவை என்றாலும் எந்த மனத்தைத் தோண்டினாலும் துக்கத்தின் ஊற்று கொப்பளிப்பதைப் பார்க்கலாம். மனித மனத்தின் அடிநிலைகளில் ஒரே திராவகம்தான் ஓடிக்கொண்டிருக்கிறது."
     }, {
       label: "ஒரு புளியமரத்தின் கதை",
       author: "சுந்தர ராமசாமி",
       category: "novel",
       image_url: "https://images-eu.ssl-images-amazon.com/images/I/51rSINAZkdL._SY346_.jpg",
-      url: "https://www.amazon.in/Puliyamarathin-Kathai-Tamil-Sundara-Ramaswamy-ebook/dp/B06WRNNSD7",
+      url: "http://amzn.to/2ve52ju",
       description: "1966இல் முதல் பதிப்பு வெளிவந்த காலத்திலிருந்து தீவிர வாசகர்களின் கவனத்தில் இருந்துவரும் ‘ஒரு புளிய மரத்தின் கதை’ ஒரு நவீன செவ்வியல் புனைவாக நிலைபெற்றுவிட்டது. ஒப்பீட்டிலக்கிய விமர்சகர் கே. எம். ஜார்ஜ் இந்நாவலை நோபல் பரிசுபெறத் தகுதியான தமிழ் நாவலாகக் குறிப்பிடுகிறார்."
     }, {
       label: "சில நேரங்களில் சில மனிதர்கள்",
       author: "ஜெயகாந்தன்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/51WS%2BXfQMcL._SX323_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Nerangalil-Manidhargal-Meenakshi-Puthaka-Nilayam/dp/B00JXG2GS6/",
+      url: "http://amzn.to/2wC0hhv",
       description: "இந்த நாவலை எழுதுவதன் மூலம் என்னைப் புதிதாய் ஒரு சோதனையில் நான் ஈடுபடுத்திக் கொண்டேன். காலங்கள் மாறும்போது மனிதர்களும் மாறித்தான் ஆக வேண்டும். மாறிய மனிதர்களைக் காலத்தின் மாற்றமே காண வைக்கிறது. பல மாற்றங்கள் சமுதாய வாழ்வில் புதுமையானைவயாக இருந்தாலும் தனி மனிதர்கள் வாழ்வில் காலங்கடந்த மாற்றங்களாகவே, நிராசைகளின் நிலைத்த சித்திரங்களாகவே உயிரிழந்து வந்து நிற்கின்றன. காலத்தின் அலைகளால் எற்றுண்ட, மோதி மூழ்கிய, போக்கில் மிதந்த, எதிர்த்து ஓய்ந்த ஓர் ஆத்மாவின் கதை இது!ஜெயகாந்தன்"
     }, {
       label: "ஒரு மனிதன்... ஒரு வீடு... ஒரு உலகம்...",
       author: "ஜெயகாந்தன்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/51etcTipmTL._SX322_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Oru-Manithan-Veedu-Ulagam/dp/B00HWWGV52/",
+      url: "http://amzn.to/2wBI6s3",
       description: "தனது நாவல்களில் தனக்கு மிகவும் பிடித்தமானது என்று ஜெயகாந்தனாலும் அவரது நாவல்களில் ஆகச் சிறப்பானது என்று இலக்கிய விமர்சகர்களாலும் குறிப்பிடப்படுவது ‘ஒரு மனிதன் ஒரு வீடு ஒரு உலகம்.’ எந்த ஊர், பெற்றோர் யார், என்ன இனம், என்ன சாதி என்று எதுவும் தெரியாத, அது பற்றிக் கவலையும் கொள்ளாத ஒரு உலகப் பொது மனிதனைக் கதாபாத்திரமாக்கி, அவன் எதிர்கொள்ளும் அனுபவங்களின் மூலம் இந்த வாழ்க்கையின் போக்கு குறித்த புரிதலை உணர்த்த முனையும் நாவல் இது."
     }, {
       label: "காடு",
@@ -70,28 +70,28 @@ module.exports = {
       author: "சாரு நிவேதிதா",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/5184077BDbL._SX320_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Raasa-Leela-Charu-Nivedita/dp/9351351955/",
+      url: "http://amzn.to/2uAFIAx",
       description: null
     }, {
       label: "ஆழி சூழ் உலகு",
       author: "ஜோடி குரூஸ்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/51Lvgbqw80L._SX318_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Aazhi-Soozh-Ulagu-Joe-Cruz/dp/B00JXG41NE/",
+      url: "http://amzn.to/2wC5INc",
       description: "கடலிலும் கரையிலும் பரதவர்களின் வாழ்க்கைப் போராட்டத்தைப் அதன் வண்ணங்களோடும் வலிகளோடும் சித்தரிக்கும் இது தமிழின் சிறந்த நாவல்களின் ஒன்று"
     }, {
       label: "வெட்டுப்புலி",
       author: "தமிழ்மகன்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/41ShO54hhfL._SX310_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Vettupuli-Thamizhmakan/dp/9380072511/",
+      url: "http://amzn.to/2uAo7J0",
       description: null
     }, {
       label: "காவல் கோட்டம்",
       author: "சு.வெங்கடேசன்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/51QjTb7TENL._SX310_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Kaval-Kottam-Tamil-Classic-Venkatesan/dp/B00H6ZV0ME/",
+      url: "http://amzn.to/2vfAtbd",
       description: "இந்திய அரசு இலக்கியத்துக்கு வழங்கும் உயரிய விருதான சாகித்ய அகடாமி விருது பெற்ற நாவல். இது காகிதத்தில் பதிக்கப்பெற்ற வெறும் எழுத்துகள் கொண்ட தொடர் வரிசைகளின் அணிவகுப்பு அல்ல. ஒடுக்கப்பட்ட சமூகத்தின் உணர்வுகள் தாங்கிய வாழ்வியல் பெட்டகம். ஒடுக்கப்பட்ட சமுதாய மக்களின் பண்பாடுகள், கலாச்சாரங்கள் இயற்கையை ஒட்டி அமைந்திருந்தன என்பதை காவல் கோட்டத்தைப் படிக்கப் படிக்கத் தெரிந்துகொள்வீர்கள். கொம்பூதி புளியமரமும், நல்ல தண்ணீர்க் கிணறும், வெள்ளாடுகளின் சத்தமும் உங்கள் மனதைவிட்டு அகலாது என்பது திண்ணம். வாருங்கள் வரலாற்றில் பயணிப்போம்!"
     }, {
       label: "சோளகர் தொட்டி",
@@ -105,28 +105,28 @@ module.exports = {
       author: "ஆர்.அபிலாஷ்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/41LFOE6fi6L._SX313_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Kaalkal-R-Abilash/dp/9381095574/",
+      url: "http://amzn.to/2wBOM9y",
       description: "கால்கள் நாவல் இதுவரை தமிழ் இலக்கியம் கவனப்படுத்தாத ஒரு வாழ்வை வாசகர் முன் வைத்திருக்கிறது. அந்த வகையில் இந்த நாவல் முக்கியமானது. ஒவ்வொரு மனிதனுக்கும் கனவு, லட்சியம், ஆசை, நோக்கம், எதிர்பார்ப்பு என்று பல இருக்கிறது. அவற்றை நோக்கித்தான் ஒவ்வொரு மனிதனும் ஓடிக்கொண்டிருக்கிறான். கனவை, லட்சியத்தை, நோக்கத்தை, ஆசையை, எதிர்ப்பார்ப்பை அடைந்துவிட்டார்களா..."
     }, {
       label: "யாமம்",
       author: "எஸ்.ரா",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/51xDhdTMe7L._SX323_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Yaamam-S-Ramakrishnan/dp/938109540X/",
+      url: "http://amzn.to/2vIYWci",
       description: "இந்தியாவின் உயரிய விருதுகளில் ஒன்றான தாகூர் விருது பெற்ற யாமம், எண்ணற்ற உள்மடிப்புகள் கொண்ட இரவாகவும் அற்புதத்தின் தீராத வாசனையாகவும் உருக்கொள்ளும் , பல நூறு ஆண்டுகளின் சரித்திரத்தின் வழியே மனித அந்தரங்கத்தின் புதிர் மிகுந்த கதையினை எழுதுகிறது. "
     }, {
       label: "உப்பு நாய்கள்",
       author: "லட்சுமி சரவணக்குமார்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/512LPaHsotL._SX337_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Uppu-Naaigal-Lakshmi-Saravanakumar/dp/B019W5ZFFS/",
+      url: "http://amzn.to/2wC3Xjg",
       description: "”இத்தகைய நவீன வாழ்வின் பரிமாணாங்களை ஜெயகாந்தனிடமோ, நாகராஜனிடமோ காணமுடியாது. குற்றம் உடலரசியல் பின்புலத்தை உட்செரித்த மையமான நோக்கமும் அவர்களுக்கில்லை. லக்‌ஷிமி சரவனக்குமாரின் எழுத்து மேற்சொன்னவற்றின் மேல்நின்று காண்பதால் தனித்துத் துலங்குகிறது. பெருநகர வெளியில் நிகழும் குற்றங்களையும் வாதைகளையும் காத்திரமாக முன்வைக்கும் லக்‌ஷ்மி சரவனக்குமாரின் உப்புநாய்கள் பதைபதைப்பையும் பெருஞ் சலனத்தையும் மனதில் உண்டாக்குகிறது.”"
     }, {
       label: 6174,
       author: "க.சுதாகர்",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/51uYAFljexL._SX314_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/6174-Ka-Sudhakar/dp/9380545665/",
+      url: "http://amzn.to/2wBUd8D",
       description: "தமிழில் அறிவியல் சார் சிறுகதைகள் அறிதாகவே எழுதப்பட்டு வருகின்றன. நாவல்கள் அரிதினும் அரிது. இந்தச் சூழலில் 6174 வரவேற்கப்பட வேண்டியது. லெமூரியாவிற்கும் தமிழர்களுக்கும் கடந்த நூராண்டுகளுக்கும் மேலாக ஒரு பிரிக்கமுடியாத தொடர்பு இருந்துவருகிறது. இந்தத் தொடர்பின் நீட்சிதான் இந்த நாவல்."
     }, {
       label: "கொரில்லா ",
@@ -140,7 +140,7 @@ module.exports = {
       author: "சல்மா",
       category: "novel",
       image_url: "http://ecx.images-amazon.com/images/I/416A9d4-42L._SX314_BO1,204,203,200_.jpg",
-      url: "http://www.amazon.in/Irandam-Jamankalin-Kathai-Novel-Salma/dp/8187477849/",
+      url: "http://amzn.to/2vIC6BD",
       description: "இந்நாவலில் நாயகர்கள் / நாயகிகள் / வில்லன்கள் என எவருமில்லை. அந்த விதத்தில் மிகவும் ஜனநாயகப் பண்பு கொண்டதாக இருக்கிறது இந்தப் பிரதி. இதன் காரணமாக அதிகாரத்துக்கு எதிரானதொரு அமைப்பைக் கொண்டதாக இந்தப் பிரதி விளங்குகிறது. பின் நவீனத்துவப் பிரதியொன்றில் காணக் கிடைக்கும் சாதகமான இந்தப் பண்புகள் மிக இயல்பாக இந்த யதார்த்தவகைப் பிரதியில் விரவிக் கிடக்கின்றன. ஒரே நேரத்தில் மானுடவியல் ஆவணமாக, வரலாற்றுப் பதிவாக, படைப்புக் குணம் நிரம்பிய புனைவாக விளங்குகிற இந்தப் பிரதி இதுவரை பூடகப்படுத்தப்பட்டிருந்த பெண்கள் மற்றும் முஸ்லீம்களின் உலகுக்குள் நம்மை இட்டுச் செல்கிறது. "
     }, {
       label: "தூப்புக்காரி",
@@ -154,7 +154,7 @@ module.exports = {
       author: "வா.மு.கோமு",
       category: "novel",
       image_url: "https://images-eu.ssl-images-amazon.com/images/I/51HBbJBCa9L.jpg",
-      url: "https://www.amazon.in/xBAE-xB99-Mangalathu-Devathaigal-Tamil-ebook/dp/B01N9DLCI6",
+      url: "http://amzn.to/2uiNZtn",
       description: "பூமியில் மனித இருப்பின் ஆதரமான உடல்களில் பொங்கிடும் பாலியல் வேட்கை.எங்கும் நிழல் போல பற்றிப் படர்வதை நுட்பமான மொழியில் வா.மு.கோமு நாவலாக்கியுள்ளார்."
     }, {
       label: "களவு காமம் காதல்",
@@ -185,7 +185,7 @@ module.exports = {
       author: "நிலா ரசிகன்",
       category: "kavidhai",
       image_url: "https://images-eu.ssl-images-amazon.com/images/I/41%2Bw4ymOeZL.jpg",
-      url: "https://www.amazon.in/xBAE-xBC0-xBA9-xBCD-Tamil-ebook/dp/B06XY91ZL4",
+      url: "http://amzn.to/2wBURmD",
       description: null
     },
     {
