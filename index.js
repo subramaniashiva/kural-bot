@@ -99,6 +99,9 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
   else if (apiAiAction === APP_CONSTANTS.apiai.bookOptions) {
     sendBookOptions(res, apiAiAction);
   }
+  else if(apiAiAction === APP_CONSTANTS.apiai.searchIntent) {
+    // Implement search
+  }
   else {
     res.status(200).end();
   }
@@ -129,8 +132,6 @@ function prepareBookCategoriesObject() {
 }
 
 const BOOK_CATEGORIES_OBJ = prepareBookCategoriesObject();
-
-console.log('categories is ', BOOK_CATEGORIES_OBJ);
 
 // Function called when getting an input from the user
 function sendMessage(event) {
@@ -164,16 +165,6 @@ function sendMessage(event) {
           }
         }
       }
-      // messageObj = {
-      //   attachment: {
-      //     type: 'template',
-      //     payload: {
-      //       template_type: 'button',
-      //       text: APP_MESSAGES.books.select_button,
-      //       buttons: BOOK_CATEGORIES_OBJ
-      //     }
-      //   }
-      // }
     } else {
       messageObj = {
         text: aiText
@@ -277,6 +268,14 @@ function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
       msg = msg + '\n------------------\n';
       // Add the kural explanation
       msg = msg + json.explanation;
+      
+      // Only tags present then add athigaram info
+      if(tags && tags.length) {
+        // Add a line between explanation and athigaram
+        msg = msg + '\n------------------\n';
+        // Add athigaram
+        msg = msg + tags[0].tagName + ': ' + tags[0].tagValue
+      }
       return res.json({
         speech: msg,
         displayText: msg,
