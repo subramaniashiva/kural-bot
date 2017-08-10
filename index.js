@@ -270,7 +270,7 @@ function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
       msg = msg + json.explanation;
       
       // Only tags present then add athigaram info
-      if(tags && tags.length) {
+      if(json.tags && json.tags.length) {
         // Add a line between explanation and athigaram
         msg = msg + '\n------------------\n';
         // Add athigaram
