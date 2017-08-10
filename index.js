@@ -274,7 +274,7 @@ function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
         // Add a line between explanation and athigaram
         msg = msg + '\n------------------\n';
         // Add athigaram
-        msg = msg + tags[0].tagName + ': ' + tags[0].tagValue
+        msg = msg + json.tags[0].tagName + ': ' + json.tags[0].tagValue
       }
       return res.json({
         speech: msg,
