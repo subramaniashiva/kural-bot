@@ -108,9 +108,11 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
   }
   else if(apiAiAction === APP_CONSTANTS.apiai.feedbackIntent) {
     sendMail(req.body.result.parameters['any']);
+
+    let msgToSend = helper.getRandomElementFromArray(APP_MESSAGES.feedback);
     return res.json({
-      speech: 'மிக்க நன்றி தோழர். https://www.youtube.com/watch?v=gLjD4nLiAX8',
-      displayText: 'மிக்க நன்றி தோழர். https://www.youtube.com/watch?v=gLjD4nLiAX8',
+      speech: msgToSend,
+      displayText: msgToSend,
       source: APP_CONSTANTS.apiai.feedbackIntent
     });
   }
