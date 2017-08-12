@@ -53,7 +53,7 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
   //console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent);
   const apiAiAction = req && req.body && req.body.result && req.body.result.action;
 
-  console.log('result is ', req.body.result);
+  console.log('result is ', req.body.result.messages);
 
   if (apiAiAction === APP_CONSTANTS.apiai.kuralIntent) {
     // Get and process the kural number
@@ -107,7 +107,7 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
     // Implement search
   }
   else if(apiAiAction === APP_CONSTANTS.apiai.feedbackIntent) {
-    sendMail(req.body.result.toString());
+    sendMail(req.body.result.messages);
   }
   else {
     res.status(200).end();
