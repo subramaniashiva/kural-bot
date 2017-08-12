@@ -53,7 +53,7 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
   //console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent);
   const apiAiAction = req && req.body && req.body.result && req.body.result.action;
 
-  console.log('result is ', req.body, res);
+  //console.log('result is ', req.body, res);
 
   if (apiAiAction === APP_CONSTANTS.apiai.kuralIntent) {
     // Get and process the kural number
@@ -107,7 +107,7 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
     // Implement search
   }
   else if(apiAiAction === APP_CONSTANTS.apiai.feedbackIntent) {
-    sendMail(req.body.result.messages);
+    sendMail(req.body.result.parameters['any']);
     return res.json({
       speech: 'மிக்க நன்றி தோழர். https://www.youtube.com/watch?v=gLjD4nLiAX8',
       displayText: 'மிக்க நன்றி தோழர். https://www.youtube.com/watch?v=gLjD4nLiAX8',
