@@ -13,6 +13,8 @@ const helper = require('./utils/helper');
 
 const BOOKS = require('./utils/books');
 
+const {sendMail} = require('./mailer');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -101,6 +103,9 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
   }
   else if(apiAiAction === APP_CONSTANTS.apiai.searchIntent) {
     // Implement search
+  }
+  else if(apiAiAction === APP_CONSTANTS.apiai.feedbackIntent) {
+    sendMail(req.body.result.toString());
   }
   else {
     res.status(200).end();
