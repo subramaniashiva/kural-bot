@@ -53,6 +53,8 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
   //console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent);
   const apiAiAction = req && req.body && req.body.result && req.body.result.action;
 
+  console.log('result is ', req.body.result);
+
   if (apiAiAction === APP_CONSTANTS.apiai.kuralIntent) {
     // Get and process the kural number
     let kuralNo = req.body.result.parameters['number'];
