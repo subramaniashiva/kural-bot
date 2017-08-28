@@ -14,7 +14,7 @@ module.exports = {
     feedbackIntent: 'feedback'
   },
   kural: {
-    url: 'https://hidden-reef-62795.herokuapp.com/public/item/%E0%AE%A4%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AF%81%E0%AE%B1%E0%AE%B3%E0%AF%8D/',
+    url: 'https://thirukkuralapi.herokuapp.com/public/item/%E0%AE%A4%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AF%81%E0%AE%B1%E0%AE%B3%E0%AF%8D/',
     min: 1,
     max: 1330,
     loveStart: 1081,
