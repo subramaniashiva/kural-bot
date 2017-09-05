@@ -37,6 +37,13 @@ app.post('/', (req, res) => {
           sendMessage(event);
         } else if(event.postback) {
           console.log('event is ', event);
+          if(event.postback.payload === 'books' || event.postback.payload === 'random') {
+            console.log('event from menu is ', event);
+            event.message = {
+              text: event.postback.payload
+            };
+            sendMessage(event);
+          }
           sendBookToUser(event);
         }
       });
