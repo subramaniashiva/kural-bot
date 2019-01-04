@@ -51,6 +51,7 @@ app.post('/webhook', (req, res) => {
     });
     res.status(200).end();
   }
+  res.status(401).end();
 });
 
 // Fulfillments from API.ai
