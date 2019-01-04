@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
 // Get method used for facebook to verify this app
-app.get('/', (req, res) => {
+app.get('/webhook', (req, res) => {
   if (req.query['hub.mode'] && req.query['hub.verify_token'] === process.env.FB_VERIFY_TOKEN) {
     res.status(200).send(req.query['hub.challenge']);
   } else {
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 });
 
 // Post message from the facebook messenger
-app.post('/', (req, res) => {
+app.post('/webhook', (req, res) => {
 
   if(req.body.object === 'page') {
     req.body.entry.forEach((entry) => {
