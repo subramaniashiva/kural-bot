@@ -29,8 +29,9 @@ app.get('/webhook', (req, res) => {
 
 // Post message from the facebook messenger
 app.post('/webhook', (req, res) => {
-
+  console.log('post received');
   if(req.body.object === 'page') {
+    console.log('fb msg recognised');
     req.body.entry.forEach((entry) => {
       entry.messaging.forEach((event) => {
         if(event.message && event.message.text && !event.message.is_echo) {
