@@ -133,10 +133,11 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
 // Global error handler
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  console.log('error is ', err.message);
+  // res.render('error', {
+  //   message: err.message,
+  //   error: {}
+  // });
 });
 
 // Start the server
