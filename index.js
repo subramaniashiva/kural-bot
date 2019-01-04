@@ -30,7 +30,7 @@ app.get('/webhook', (req, res) => {
 // Post message from the facebook messenger
 app.post('/webhook', (req, res) => {
   console.log('post received');
-  if(req.body.object === 'page') {
+  if(req.body && req.body.object === 'page') {
     console.log('fb msg recognised');
     req.body.entry.forEach((entry) => {
       entry.messaging.forEach((event) => {
@@ -51,7 +51,7 @@ app.post('/webhook', (req, res) => {
     });
     res.status(200).end();
   }
-  res.status(401).end();
+  res.status(404).end();
 });
 
 // Fulfillments from API.ai
