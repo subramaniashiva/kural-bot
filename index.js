@@ -13,10 +13,10 @@ const helper = require('./utils/helper');
 
 const BOOKS = require('./utils/books');
 
-const {sendMail} = require('./mailer');
+const { sendMail } = require('./mailer');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Get method used for facebook to verify this app
 app.get('/webhook', (req, res) => {
@@ -30,15 +30,15 @@ app.get('/webhook', (req, res) => {
 // Post message from the facebook messenger
 app.post('/webhook', (req, res) => {
   console.log('post received');
-  if(req.body && req.body.object === 'page') {
+  if (req.body && req.body.object === 'page') {
     console.log('fb msg recognised');
     req.body.entry.forEach((entry) => {
       entry.messaging.forEach((event) => {
-        if(event.message && event.message.text && !event.message.is_echo) {
+        if (event.message && event.message.text && !event.message.is_echo) {
           sendMessage(event);
-        } else if(event.postback) {
+        } else if (event.postback) {
           console.log('event is ', event);
-          if(event.postback.payload === 'books' || event.postback.payload === 'random') {
+          if (event.postback.payload === 'books' || event.postback.payload === 'random') {
             console.log('event from menu is ', event);
             event.message = {
               text: event.postback.payload
@@ -73,49 +73,49 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
 
     // If there is no kural number or kural number is not valid
     // send a message to the user
-    if(!kuralNo || isNaN(kuralNo)) {
+    if (!kuralNo || isNaN(kuralNo)) {
       return res.json({
         speech: APP_MESSAGES.noKuralNo[0],
         displayText: APP_MESSAGES.noKuralNo[0],
         source: APP_CONSTANTS.apiai.kuralIntent
       });
-    } 
+    }
     // If the kural number is outside bounds,
     // Send a message to the user
-    else if(kuralNo < APP_CONSTANTS.kural.min || kuralNo > APP_CONSTANTS.kural.max) {
+    else if (kuralNo < APP_CONSTANTS.kural.min || kuralNo > APP_CONSTANTS.kural.max) {
       return res.json({
         speech: APP_MESSAGES.kuralNoLimit[0],
         displayText: APP_MESSAGES.kuralNoLimit[0],
         source: APP_CONSTANTS.apiai.kuralIntent
       });
-    } 
+    }
     // Else request the kural from back end API
     else {
-      let restUrl = APP_CONSTANTS.kural.url + kuralNo +'.json';
+      let restUrl = APP_CONSTANTS.kural.url + kuralNo + '.json';
       console.log('sendng request ', restUrl);
 
       getKuralFromApi(restUrl, res);
-      
+
     }
   }
   else if (apiAiAction === APP_CONSTANTS.apiai.loveIntent ||
     apiAiAction === APP_CONSTANTS.apiai.aramIntent ||
     apiAiAction === APP_CONSTANTS.apiai.porulIntent ||
     apiAiAction === APP_CONSTANTS.apiai.randomIntent
-    ) {
-    let kuralNo = Math.floor(Math.random() * (APP_CONSTANTS.kural[apiAiAction + 'End'] - APP_CONSTANTS.kural[apiAiAction + 'Start'] + 1)) + APP_CONSTANTS.kural[apiAiAction + 'Start'];  
-    let restUrl = APP_CONSTANTS.kural.url + kuralNo +'.json';
+  ) {
+    let kuralNo = Math.floor(Math.random() * (APP_CONSTANTS.kural[apiAiAction + 'End'] - APP_CONSTANTS.kural[apiAiAction + 'Start'] + 1)) + APP_CONSTANTS.kural[apiAiAction + 'Start'];
+    let restUrl = APP_CONSTANTS.kural.url + kuralNo + '.json';
     console.log('sendng request ', restUrl);
 
     getKuralFromApi(restUrl, res, apiAiAction);
-  } 
+  }
   else if (apiAiAction === APP_CONSTANTS.apiai.bookOptions) {
     sendBookOptions(res, apiAiAction);
   }
-  else if(apiAiAction === APP_CONSTANTS.apiai.searchIntent) {
+  else if (apiAiAction === APP_CONSTANTS.apiai.searchIntent) {
     // Implement search
   }
-  else if(apiAiAction === APP_CONSTANTS.apiai.feedbackIntent) {
+  else if (apiAiAction === APP_CONSTANTS.apiai.feedbackIntent) {
     sendMail(req.body.result.parameters['any']);
 
     let msgToSend = helper.getRandomElementFromArray(APP_MESSAGES.feedback);
@@ -130,8 +130,77 @@ app.post(APP_CONSTANTS.apiai.postKuralPath, (req, res) => {
   }
 });
 
+app.post(APP_CONSTANTS.apiai.postKuralPathV2, (req, res) => {
+
+  // Proces only if the user is intenting a kural
+  //console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent);
+  const apiAiAction = req && req.body && req.body.query_result && req.body.query_result.action;
+
+  console.log('result is ', req.body, res);
+
+  if (apiAiAction === APP_CONSTANTS.apiai.kuralIntent) {
+    // Get and process the kural number
+    let kuralNo = req.body.result.parameters['number'];
+    kuralNo = parseInt(kuralNo);
+
+    console.log('kural number is ', kuralNo);
+
+    // If there is no kural number or kural number is not valid
+    // send a message to the user
+    if (!kuralNo || isNaN(kuralNo)) {
+      return res.json({
+        fulfillmentText: APP_MESSAGES.noKuralNo[0],
+      });
+    }
+    // If the kural number is outside bounds,
+    // Send a message to the user
+    else if (kuralNo < APP_CONSTANTS.kural.min || kuralNo > APP_CONSTANTS.kural.max) {
+      return res.json({
+        fulfillmentText: APP_MESSAGES.kuralNoLimit[0],
+      });
+    }
+    // Else request the kural from back end API
+    else {
+      let restUrl = APP_CONSTANTS.kural.url + kuralNo + '.json';
+      console.log('sendng request ', restUrl);
+
+      getKuralFromApi(restUrl, res);
+
+    }
+  }
+  else if (apiAiAction === APP_CONSTANTS.apiai.loveIntent ||
+    apiAiAction === APP_CONSTANTS.apiai.aramIntent ||
+    apiAiAction === APP_CONSTANTS.apiai.porulIntent ||
+    apiAiAction === APP_CONSTANTS.apiai.randomIntent
+  ) {
+    let kuralNo = Math.floor(Math.random() * (APP_CONSTANTS.kural[apiAiAction + 'End'] - APP_CONSTANTS.kural[apiAiAction + 'Start'] + 1)) + APP_CONSTANTS.kural[apiAiAction + 'Start'];
+    let restUrl = APP_CONSTANTS.kural.url + kuralNo + '.json';
+    console.log('sendng request ', restUrl);
+
+    getKuralFromApi(restUrl, res, apiAiAction);
+  }
+  else if (apiAiAction === APP_CONSTANTS.apiai.bookOptions) {
+    sendBookOptions(res, apiAiAction);
+  }
+  else if (apiAiAction === APP_CONSTANTS.apiai.searchIntent) {
+    // Implement search
+  }
+  else if (apiAiAction === APP_CONSTANTS.apiai.feedbackIntent) {
+    sendMail(req.body.result.parameters['any']);
+
+    let msgToSend = helper.getRandomElementFromArray(APP_MESSAGES.feedback);
+    return res.json({
+      fulfillmentText: msgToSend,
+      source: APP_CONSTANTS.apiai.feedbackIntent
+    });
+  }
+  else {
+    res.status(200).end();
+  }
+});
+
 // Global error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   console.log('error is ', err.message);
   // res.render('error', {
@@ -149,7 +218,7 @@ function prepareBookCategoriesObject() {
   return BOOKS.categories.map((item) => {
     let obj = {};
     obj['type'] = 'postback',
-    obj['title'] = item.label;
+      obj['title'] = item.label;
     obj['payload'] = item.name;
     return obj;
   });
@@ -173,7 +242,7 @@ function sendMessage(event) {
     let aiText = response.result.fulfillment.speech;
     let messageObj;
 
-    if(aiText === 'sendBookOptions') {
+    if (aiText === 'sendBookOptions') {
       messageObj = {
         attachment: {
           type: 'template',
@@ -229,7 +298,7 @@ function sendBookToUser(event) {
   // Send it back to FB messenger
   let categoryChosen = BOOKS.books[event.postback.payload];
 
-  if(categoryChosen) {
+  if (categoryChosen) {
     let book = helper.getRandomElementFromArray(categoryChosen);
     request({
       url: APP_CONSTANTS.messenger.url,
@@ -292,17 +361,16 @@ function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
       msg = msg + '\n------------------\n';
       // Add the kural explanation
       msg = msg + json.explanation;
-      
+
       // Only tags present then add athigaram info
-      if(json.tags && json.tags.length) {
+      if (json.tags && json.tags.length) {
         // Add a line between explanation and athigaram
         msg = msg + '\n------------------\n';
         // Add athigaram
         msg = msg + json.tags[0].tagName + ': ' + json.tags[0].tagValue
       }
       return res.json({
-        speech: msg,
-        displayText: msg,
+        fulfillmentText: msg,
         source: intent
       });
     } else {
@@ -318,8 +386,7 @@ function getKuralFromApi(url, res, intent = APP_CONSTANTS.apiai.kuralIntent) {
 
 function sendBookOptions(res, intent) {
   return res.json({
-    speech: 'sendBookOptions',
-    displayText: 'sendBookOptions',
+    fulfillmentText: 'sendBookOptions',
     source: intent
   });
 }

@@ -4,6 +4,7 @@ module.exports = {
   },
   apiai: {
     postKuralPath: '/ai',
+    postKuralPathV2: '/aiv2',
     kuralIntent: 'kural',
     loveIntent: 'love',
     aramIntent: 'aram',
