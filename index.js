@@ -134,13 +134,13 @@ app.post(APP_CONSTANTS.apiai.postKuralPathV2, (req, res) => {
 
   // Proces only if the user is intenting a kural
   //console.log('getting result', req.body.result.action, APP_CONSTANTS.apiai.kuralIntent);
-  const apiAiAction = req && req.body && req.body.query_result && req.body.query_result.action;
+  const apiAiAction = req && req.body && req.body.queryResult && req.body.queryResult.action;
 
   console.log('result is ', req.body, res);
 
   if (apiAiAction === APP_CONSTANTS.apiai.kuralIntent) {
     // Get and process the kural number
-    let kuralNo = req.body.result.parameters['number'];
+    let kuralNo = req.body.queryResult.parameters['number'];
     kuralNo = parseInt(kuralNo);
 
     console.log('kural number is ', kuralNo);
